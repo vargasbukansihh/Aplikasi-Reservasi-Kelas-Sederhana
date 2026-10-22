@@ -51,8 +51,7 @@
       return;
     }
 
-    message.textContent = 'Autentikasi belum tersedia untuk formulir ini.';
-    message.hidden = false;
+    window.location.href = 'admin/dasboard.html';
   });
 
   document.getElementById('lupa-password').addEventListener('click', function () {

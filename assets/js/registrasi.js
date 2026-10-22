@@ -50,7 +50,6 @@
       return;
     }
 
-    message.textContent = 'Pendaftaran belum tersedia untuk formulir ini.';
-    message.hidden = false;
+    window.location.href = 'login.html';
   });
 })();
