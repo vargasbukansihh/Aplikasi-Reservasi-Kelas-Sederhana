@@ -1,0 +1,25 @@
+.table-rooms {
+  min-width: 720px;
+}
+
+.table-rooms .col-kapasitas {
+  width: 100px;
+}
+
+.table-rooms .col-lokasi {
+  width: 180px;
+}
+
+.table-rooms .col-status {
+  width: 105px;
+}
+
+.table-rooms .col-aksi {
+  width: 125px;
+}
+
+@media (max-width: 575.98px) {
+  .table-rooms {
+    min-width: 680px;
+  }
+}

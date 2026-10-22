@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Data Ruang - Reservasi Kelas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+  <link href="../assets/css/ruang.css" rel="stylesheet">
+</head>
+<body>
+  <div class="app-shell d-flex">
+    <aside class="app-sidebar d-flex flex-column gap-1">
+      <a class="brand" href="dashboard.html">
+        <img class="brand-mark brand-logo" src="../assets/img/logo pbl.png" alt="" aria-hidden="true">
+        Reservasi Kelas
+      </a>
+      <p class="nav-heading" id="judul-menu">Menu Admin / Petugas</p>
+      <nav aria-labelledby="judul-menu">
+        <ul class="nav flex-column gap-1">
+          <li class="nav-item">
+            <a class="nav-link" href="dashboard.html">
+              <i class="fa-solid fa-gauge" aria-hidden="true"></i>Dashboard
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="ruang.html" aria-current="page">
+              <i class="fa-solid fa-building" aria-hidden="true"></i>Ruang
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="data_pengguna.html">
+              <i class="fa-solid fa-users" aria-hidden="true"></i>Pengguna
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="reservasi.html">
+              <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>Reservasi
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="jadwal.html">
+              <i class="fa-solid fa-calendar-days" aria-hidden="true"></i>Jadwal
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="rekapitulasi.html">
+              <i class="fa-solid fa-chart-column" aria-hidden="true"></i>Laporan
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="flex-grow-1 sidebar-spacer"></div>
+      <div class="sidebar-user">
+        <span class="avatar" aria-hidden="true"></span>
+        <div>
+          <div class="user-name">Admin Kampus</div>
+          <div class="user-role">Admin</div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="app-main flex-grow-1">
+      <header class="app-header">
+        <nav aria-label="Breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="dashboard.html">Admin</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Ruang</li>
+          </ol>
+        </nav>
+        <div class="user-chip">
+          <span class="avatar avatar-sm" aria-hidden="true"></span>
+          Admin Kampus
+        </div>
+      </header>
+
+      <main class="app-content" id="konten-utama">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+          <div>
+            <h1 class="page-title">Data Ruang</h1>
+            <p class="page-subtitle">Kelola master data ruang kelas (CRUD)</p>
+          </div>
+          <button type="button" class="btn btn-primary" id="btn-tambah-ruang"
+                  data-bs-toggle="modal" data-bs-target="#modal-ruang">
+            <i class="fa-solid fa-plus me-2" aria-hidden="true"></i>Tambah Ruang
+          </button>
+        </div>
+
+        <div id="area-notifikasi-ruang" aria-live="polite"></div>
+
+        <section aria-labelledby="judul-cari-ruang">
+          <h2 class="visually-hidden" id="judul-cari-ruang">Cari dan filter ruang</h2>
+          <form class="card-surface filter-card" id="form-cari-ruang" role="search" novalidate>
+            <div class="filter-field">
+              <label for="cari-nama-ruang" class="form-label">Cari Ruang</label>
+              <input type="search" class="form-control" id="cari-nama-ruang" name="q"
+                     placeholder="Nama ruang..." autocomplete="off">
+            </div>
+            <div class="filter-field">
+              <label for="cari-status-ruang" class="form-label">Status</label>
+              <select class="form-select" id="cari-status-ruang" name="status">
+                <option value="">Semua status</option>
+                <option value="aktif">Aktif</option>
+                <option value="nonaktif">Nonaktif</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">
+              <i class="fa-solid fa-magnifying-glass me-2" aria-hidden="true"></i>Cari
+            </button>
+          </form>
+        </section>
+
+        <section class="card-surface table-card" aria-labelledby="judul-daftar-ruang">
+          <h2 class="visually-hidden" id="judul-daftar-ruang">Daftar ruang</h2>
+          <div class="table-responsive">
+            <table class="table table-users table-rooms">
+              <caption class="visually-hidden">Daftar contoh ruang untuk pratinjau wireframe.</caption>
+              <thead>
+                <tr>
+                  <th scope="col" class="col-no">No</th>
+                  <th scope="col">Nama Ruang</th>
+                  <th scope="col" class="col-kapasitas">Kapasitas</th>
+                  <th scope="col" class="col-lokasi">Lokasi</th>
+                  <th scope="col" class="col-status">Status</th>
+                  <th scope="col" class="col-aksi">Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="tabel-ruang"></tbody>
+            </table>
+          </div>
+          <div class="empty-state text-center" id="keadaan-kosong-ruang" hidden>
+            <i class="fa-solid fa-building-circle-exclamation fa-2x mb-2" aria-hidden="true"></i>
+            <p class="mb-0" id="teks-kosong-ruang">Belum ada data ruang pada pratinjau ini.</p>
+          </div>
+        </section>
+
+        <div class="pagination-bar">
+          <p class="mb-0" id="info-ruang">Belum ada data ruang untuk ditampilkan.</p>
+          <nav aria-label="Navigasi halaman ruang">
+            <ul class="pagination" id="pagination-ruang"></ul>
+          </nav>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modal-ruang" tabindex="-1" aria-labelledby="judul-modal-ruang" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <form id="form-ruang" novalidate>
+          <input type="hidden" name="id" id="field-id-ruang">
+          <div class="modal-header">
+            <h2 class="modal-title" id="judul-modal-ruang">Tambah Ruang</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+          </div>
+          <div class="modal-body">
+            <div>
+              <label for="field-nama-ruang" class="form-label">Nama Ruang <span class="text-danger" aria-hidden="true">*</span></label>
+              <input type="text" class="form-control" id="field-nama-ruang" name="nama" required maxlength="100"
+                     placeholder="Contoh: Ruang A101" aria-describedby="err-nama-ruang" autocomplete="off">
+              <div class="invalid-feedback" id="err-nama-ruang">Nama ruang wajib diisi.</div>
+            </div>
+            <div>
+              <label for="field-kapasitas" class="form-label">Kapasitas <span class="text-danger" aria-hidden="true">*</span></label>
+              <input type="number" class="form-control tabular" id="field-kapasitas" name="kapasitas"
+                     required min="1" step="1" placeholder="Jumlah kursi" aria-describedby="err-kapasitas">
+              <div class="invalid-feedback" id="err-kapasitas">Masukkan kapasitas berupa bilangan bulat lebih dari 0.</div>
+            </div>
+            <div>
+              <label for="field-lokasi" class="form-label">Lokasi <span class="text-danger" aria-hidden="true">*</span></label>
+              <input type="text" class="form-control" id="field-lokasi" name="lokasi" required maxlength="100"
+                     placeholder="Gedung / lantai" aria-describedby="err-lokasi" autocomplete="off">
+              <div class="invalid-feedback" id="err-lokasi">Lokasi ruang wajib diisi.</div>
+            </div>
+            <div class="form-check mb-0">
+              <input class="form-check-input" type="checkbox" id="field-status-aktif" name="aktif" value="1" checked>
+              <label class="form-check-label" for="field-status-aktif">Status aktif</label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
+            <button type="submit" class="btn btn-primary" id="btn-simpan-ruang">Simpan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modal-hapus-ruang" tabindex="-1" aria-labelledby="judul-modal-hapus-ruang" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <form id="form-hapus-ruang">
+          <input type="hidden" name="id" id="hapus-id-ruang">
+          <div class="modal-header">
+            <h2 class="modal-title" id="judul-modal-hapus-ruang">Hapus Ruang</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+          </div>
+          <div class="modal-body">
+            <p class="mb-0">Anda yakin ingin menghapus ruang berikut?</p>
+            <div class="confirm-box" id="hapus-ringkasan-ruang"></div>
+            <p class="confirm-warning">Tindakan ini tidak dapat dibatalkan.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
+            <button type="submit" class="btn btn-danger">Hapus</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/ruang.js"></script>
+</body>
+</html>
