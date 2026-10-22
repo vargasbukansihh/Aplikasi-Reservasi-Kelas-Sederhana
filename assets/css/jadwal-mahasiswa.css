@@ -1,0 +1,165 @@
+.schedule-content {
+  gap: 20px;
+}
+
+.schedule-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.schedule-heading .btn {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.schedule-filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px;
+  padding: 16px;
+}
+
+.schedule-filter-field {
+  flex: 1 1 180px;
+  min-width: 0;
+}
+
+.schedule-filter .form-label {
+  margin-bottom: 4px;
+}
+
+.schedule-filter .form-control,
+.schedule-filter .form-select {
+  min-height: 40px;
+}
+
+.schedule-filter-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.schedule-filter-actions .btn {
+  min-height: 40px;
+}
+
+.schedule-table-card {
+  overflow: hidden;
+}
+
+.schedule-table {
+  min-width: 850px;
+  margin: 0;
+  font-size: 13px;
+  line-height: 20px;
+  --bs-table-bg: transparent;
+}
+
+.schedule-table > :not(caption) > * > * {
+  padding: 10px 12px;
+  border-bottom-color: var(--border-default);
+  vertical-align: middle;
+}
+
+.schedule-table thead th {
+  height: 38px;
+  background: var(--bg-table-header);
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.schedule-table tbody td {
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.schedule-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.availability-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border: 1px solid;
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  line-height: 14px;
+}
+
+.availability-badge.is-used {
+  border-color: var(--muted-border);
+  background: var(--muted-bg);
+  color: var(--muted-text);
+}
+
+.availability-badge.is-free {
+  border-color: var(--neutral-900);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+}
+
+.schedule-action {
+  padding: 4px 0;
+  border: 0;
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 12px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.schedule-action:hover {
+  color: var(--action-primary);
+}
+
+.schedule-action:disabled {
+  color: var(--text-secondary);
+  text-decoration: none;
+  cursor: default;
+}
+
+.schedule-pagination {
+  margin-top: -4px;
+}
+
+@media (max-width: 991.98px) {
+  .schedule-filter-field {
+    flex-basis: calc(50% - 12px);
+  }
+}
+
+@media (max-width: 575.98px) {
+  .schedule-heading {
+    align-items: flex-start;
+  }
+
+  .schedule-heading .btn {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .schedule-filter-field {
+    flex-basis: 100%;
+  }
+
+  .schedule-filter-actions {
+    width: 100%;
+  }
+
+  .schedule-filter-actions .btn {
+    flex: 1;
+  }
+
+  .schedule-table {
+    min-width: 820px;
+  }
+
+  .pagination {
+    --bs-pagination-padding-x: 12px;
+    --bs-pagination-padding-y: 7px;
+  }
+}

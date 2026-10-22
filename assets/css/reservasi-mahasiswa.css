@@ -1,0 +1,148 @@
+.reservations-content {
+  gap: 20px;
+}
+
+.reservations-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.reservations-heading .btn {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.reservations-table-card {
+  overflow: hidden;
+}
+
+.reservations-table {
+  min-width: 760px;
+  margin: 0;
+  font-size: 13px;
+  line-height: 20px;
+  --bs-table-bg: transparent;
+}
+
+.reservations-table > :not(caption) > * > * {
+  padding: 10px 12px;
+  border-bottom-color: var(--border-default);
+  vertical-align: middle;
+}
+
+.reservations-table thead th {
+  height: 38px;
+  background: var(--bg-table-header);
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.reservations-table tbody td {
+  color: var(--text-primary);
+}
+
+.reservations-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.reservations-table tbody td:nth-child(2),
+.reservations-table tbody td:nth-child(3),
+.reservations-table tbody td:nth-child(5),
+.reservations-table tbody td:nth-child(6) {
+  white-space: nowrap;
+}
+
+.reservation-status {
+  font-weight: 500;
+}
+
+.reservation-status.is-pending {
+  background: var(--muted-bg);
+  color: var(--muted-text);
+  border-color: var(--muted-border);
+}
+
+.reservation-status.is-approved {
+  background: var(--navy-900);
+  color: var(--neutral-0);
+  border-color: var(--navy-900);
+}
+
+.reservation-status.is-finished {
+  background: var(--neutral-0);
+  color: var(--text-primary);
+  border-color: var(--neutral-900);
+}
+
+.reservation-status.is-cancelled {
+  background: var(--muted-bg);
+  color: var(--text-secondary);
+  border-color: var(--muted-border);
+}
+
+.reservation-action {
+  padding: 4px 2px;
+  border: 0;
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.reservation-action:hover {
+  color: var(--action-danger);
+}
+
+.reservation-time-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.reservation-time-error {
+  margin: -8px 0 0;
+}
+
+.reservation-current-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.reservation-cancel-note {
+  margin: -4px 0 0;
+  color: var(--text-secondary);
+}
+
+#area-notifikasi-reservasi:empty {
+  display: none;
+}
+
+@media (max-width: 575.98px) {
+  .reservations-heading {
+    align-items: flex-start;
+  }
+
+  .reservations-heading .btn {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .reservation-time-fields {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  #modal-reservasi .modal-content,
+  #modal-batalkan-reservasi .modal-content {
+    padding: 20px;
+  }
+}

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reservasi Saya - Reservasi Kelas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+  <link href="../assets/css/reservasi-mahasiswa.css" rel="stylesheet">
+</head>
+<body>
+  <div class="app-shell d-flex">
+    <aside class="app-sidebar d-flex flex-column gap-1">
+      <a class="brand" href="dasboard.html">
+        <img class="brand-mark brand-logo" src="../assets/img/logo pbl.png" alt="" aria-hidden="true">
+        Reservasi Kelas
+      </a>
+      <p class="nav-heading" id="judul-menu">Menu Mahasiswa</p>
+      <nav aria-labelledby="judul-menu">
+        <ul class="nav flex-column gap-1">
+          <li class="nav-item">
+            <a class="nav-link" href="dasboard.html">
+              <i class="fa-solid fa-gauge" aria-hidden="true"></i>Dashboard
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="jadwal.html">
+              <i class="fa-solid fa-calendar-days" aria-hidden="true"></i>Jadwal
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="reservasi.html" aria-current="page">
+              <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>Reservasi
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <div class="app-main flex-grow-1">
+      <header class="app-header">
+        <nav aria-label="Breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="dasboard.html">Mahasiswa</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Reservasi</li>
+          </ol>
+        </nav>
+        <div class="user-chip">
+          <span class="avatar avatar-sm" aria-hidden="true"></span>
+          Budi Santoso
+        </div>
+      </header>
+
+      <main class="app-content reservations-content" id="konten-utama">
+        <div id="area-notifikasi-reservasi" aria-live="polite"></div>
+        <div class="reservations-heading">
+          <div>
+            <h1 class="page-title">Reservasi Saya</h1>
+            <p class="page-subtitle">Riwayat dan status pengajuan reservasi Anda</p>
+          </div>
+          <button type="button" class="btn btn-primary" id="btn-ajukan-reservasi"
+                  data-bs-toggle="modal" data-bs-target="#modal-reservasi">
+            <i class="fa-solid fa-plus me-2" aria-hidden="true"></i>Ajukan Reservasi
+          </button>
+        </div>
+
+        <section class="card-surface reservations-table-card" aria-labelledby="judul-riwayat-reservasi">
+          <h2 class="visually-hidden" id="judul-riwayat-reservasi">Riwayat reservasi</h2>
+          <div class="table-responsive">
+            <table class="table reservations-table">
+              <caption class="visually-hidden">Riwayat reservasi ruang kelas dan status pengajuannya.</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Ruang</th>
+                  <th scope="col">Tanggal</th>
+                  <th scope="col">Jam</th>
+                  <th scope="col">Keperluan</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="tabel-reservasi"></tbody>
+            </table>
+          </div>
+          <div class="empty-state text-center" id="keadaan-kosong-reservasi" hidden>
+            <i class="fa-regular fa-calendar-xmark fa-2x mb-2" aria-hidden="true"></i>
+            <p class="mb-0">Belum ada pengajuan reservasi.</p>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modal-reservasi" tabindex="-1" aria-labelledby="judul-modal-reservasi" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <form id="form-reservasi" novalidate>
+          <div class="modal-header">
+            <h2 class="modal-title" id="judul-modal-reservasi">Ajukan Reservasi</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+          </div>
+          <div class="modal-body">
+            <div>
+              <label for="field-ruang" class="form-label">Ruang <span class="text-danger" aria-hidden="true">*</span></label>
+              <select class="form-select" id="field-ruang" name="ruang" required>
+                <option value="">Pilih ruang</option>
+                <option value="Ruang A101">Ruang A101</option>
+                <option value="Ruang A102">Ruang A102</option>
+                <option value="Lab Komputer 1">Lab Komputer 1</option>
+                <option value="Ruang B202">Ruang B202</option>
+                <option value="Aula Mini">Aula Mini</option>
+              </select>
+              <div class="invalid-feedback">Pilih ruang yang ingin dipesan.</div>
+            </div>
+            <div>
+              <label for="field-tanggal" class="form-label">Tanggal <span class="text-danger" aria-hidden="true">*</span></label>
+              <input type="date" class="form-control" id="field-tanggal" name="tanggal" required>
+              <div class="invalid-feedback">Pilih tanggal reservasi.</div>
+            </div>
+            <div class="reservation-time-fields">
+              <div>
+                <label for="field-jam-mulai" class="form-label">Jam Mulai <span class="text-danger" aria-hidden="true">*</span></label>
+                <input type="time" class="form-control tabular" id="field-jam-mulai" name="jamMulai" required>
+                <div class="invalid-feedback">Pilih jam mulai.</div>
+              </div>
+              <div>
+                <label for="field-jam-selesai" class="form-label">Jam Selesai <span class="text-danger" aria-hidden="true">*</span></label>
+                <input type="time" class="form-control tabular" id="field-jam-selesai" name="jamSelesai" required>
+                <div class="invalid-feedback">Pilih jam selesai.</div>
+              </div>
+            </div>
+            <div class="invalid-feedback reservation-time-error" id="err-jam-reservasi" role="alert">
+              Jam selesai harus lebih besar dari jam mulai.
+            </div>
+            <div>
+              <label for="field-keperluan" class="form-label">Keperluan <span class="text-danger" aria-hidden="true">*</span></label>
+              <textarea class="form-control" id="field-keperluan" name="keperluan" rows="3" required maxlength="250"
+                        placeholder="Tulis keperluan..." aria-describedby="err-keperluan"></textarea>
+              <div class="invalid-feedback" id="err-keperluan">Jelaskan keperluan reservasi (minimal 3 karakter).</div>
+            </div>
+            <div class="reservation-current-status">
+              <span>Status awal:</span>
+              <span class="badge-status reservation-status is-pending">Diajukan</span>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
+            <button type="submit" class="btn btn-primary">Ajukan Reservasi</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modal-batalkan-reservasi" tabindex="-1"
+       aria-labelledby="judul-modal-batalkan-reservasi" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <form id="form-batalkan-reservasi">
+          <div class="modal-header">
+            <h2 class="modal-title" id="judul-modal-batalkan-reservasi">Batalkan Reservasi</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+          </div>
+          <div class="modal-body">
+            <p class="mb-0">Anda yakin ingin membatalkan reservasi berikut?</p>
+            <div class="confirm-box" id="ringkasan-batalkan-reservasi"></div>
+            <p class="reservation-cancel-note">Status reservasi akan berubah menjadi Batal.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Kembali</button>
+            <button type="submit" class="btn btn-primary">Ya, Batalkan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/reservasi-mahasiswa.js"></script>
+</body>
+</html>
