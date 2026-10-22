@@ -5,6 +5,20 @@
   var identity = document.getElementById('identitas-login');
   var password = document.getElementById('password-login');
   var message = document.getElementById('pesan-login');
+  var passwordToggle = document.getElementById('toggle-password-login');
+
+  passwordToggle.addEventListener('click', function () {
+    var isVisible = password.type === 'text';
+    password.type = isVisible ? 'password' : 'text';
+    passwordToggle.setAttribute('aria-pressed', String(!isVisible));
+    passwordToggle.setAttribute(
+      'aria-label',
+      isVisible ? 'Tampilkan password' : 'Sembunyikan password'
+    );
+    passwordToggle.querySelector('i').className = isVisible
+      ? 'fa-solid fa-eye'
+      : 'fa-solid fa-eye-slash';
+  });
 
   function clearInvalid(field) {
     field.classList.remove('is-invalid');

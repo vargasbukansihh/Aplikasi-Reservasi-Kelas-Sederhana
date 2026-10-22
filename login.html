@@ -38,10 +38,16 @@
 
         <div class="login-field">
           <label for="password-login" class="form-label">Password</label>
-          <input type="password" class="form-control" id="password-login" name="password"
-                 placeholder="Masukkan password" autocomplete="current-password"
-                 required aria-describedby="err-password-login">
-          <div class="invalid-feedback" id="err-password-login">Password wajib diisi.</div>
+          <div class="login-password-field">
+            <input type="password" class="form-control" id="password-login" name="password"
+                   placeholder="Masukkan password" autocomplete="current-password"
+                   required aria-describedby="err-password-login">
+            <div class="invalid-feedback" id="err-password-login">Password wajib diisi.</div>
+            <button type="button" class="login-password-toggle" id="toggle-password-login"
+                    aria-label="Tampilkan password" aria-pressed="false">
+              <i class="fa-solid fa-eye" aria-hidden="true"></i>
+            </button>
+          </div>
         </div>
 
         <div class="login-options">
